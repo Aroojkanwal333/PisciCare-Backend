@@ -1,11 +1,12 @@
 # PISCI CARE - BACKEND API
 # Water Quality Prediction + MongoDB Integration
-
+from dotenv import load_dotenv
+load_dotenv()
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import joblib
 import numpy as np
-import os
 from datetime import datetime
 import pymongo
 
@@ -31,8 +32,7 @@ print(f"   Species: {list(water_encoder.classes_)}")
 
 # MONGODB CONNECTION
 # REPLACE WITH YOUR FRIEND'S CREDENTIALS
-MONGO_URI = "mongodb+srv://zahranigar916_db_user:zahranigar916@cluster0.gt7gkcq.mongodb.net/PisciCareDB"
-
+MONGO_URI = os.getenv('MONGO_URI')
 try:
     mongo_client = pymongo.MongoClient(MONGO_URI)
     db = mongo_client['PisciCareDB']
